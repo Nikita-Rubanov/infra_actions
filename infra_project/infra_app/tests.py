@@ -1,3 +1,5 @@
+# infra_project/infra_app/tests.py
+
 from http import HTTPStatus
 
 from django.test import Client, TestCase
@@ -12,7 +14,7 @@ class StaticPagesURLTests(TestCase):
         response = self.guest_client.get('/')
         self.assertEqual(response.status_code, HTTPStatus.OK)
 
-        response = self.guest_client.get('second/')
+        response = self.guest_client.get('/second_page/')
         self.assertEqual(response.status_code, HTTPStatus.OK)
 
     def test_page_shows_correct_content(self):
@@ -20,5 +22,5 @@ class StaticPagesURLTests(TestCase):
         response = self.guest_client.get('/')
         self.assertContains(response, 'У меня получилось!')
 
-        response = self.guest_client.get('second/')
-        self.assertContains(response, 'А это вторая страница!')
+        response = self.guest_client.get('/second_page/')
+        self.assertContains(response, 'А это вторая страница')
